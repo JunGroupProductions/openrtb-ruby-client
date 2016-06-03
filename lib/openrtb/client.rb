@@ -3,6 +3,7 @@ require 'multi_json'
 require 'typhoeus'
 require 'openrtb/null_object'
 require 'openrtb/request'
+require 'openrtb/response'
 
 Typhoeus::Config.memoize = false
 Typhoeus::Config.verbose = false
