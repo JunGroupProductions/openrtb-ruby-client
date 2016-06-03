@@ -2,6 +2,7 @@ require 'addressable/uri'
 require 'multi_json'
 require 'typhoeus'
 require 'openrtb/null_object'
+require 'openrtb/request'
 
 Typhoeus::Config.memoize = false
 Typhoeus::Config.verbose = false
