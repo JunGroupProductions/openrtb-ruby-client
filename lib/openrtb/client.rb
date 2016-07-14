@@ -91,6 +91,7 @@ module OpenRTB
 
     def handle_responses(responses)
       result = []
+      errors = []
       responses.each do |res|
         begin
           logger.debug({
@@ -106,12 +107,16 @@ module OpenRTB
             total_time: res.total_time,
             body: res.body})
 
-          result.push OpenRTB::Response.new(MultiJson.load(res.body)) if res.success?
+          if res.success?
+            result.push OpenRTB::Response.new(MultiJson.load(res.body))
+          else
+            errors.push res
+          end
         rescue MultiJson::ParseError => e
           logger.error(e.cause)
         end
       end
-      result
+      return result, errors
     end
   end
 end
